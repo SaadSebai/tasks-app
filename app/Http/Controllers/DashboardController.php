@@ -22,6 +22,12 @@ class DashboardController extends Controller
                                         ->whereNotIn('status', [TaskStatus::DONE, TaskStatus::CANCELED])
                                         ->groupBy('priority')
                                         ->get(),
+            'tasks_deadlines'   => Task::query()
+                                        ->selectRaw('DATE(deadline) as end_date, count(*) as count')
+                                        ->whereBetween('deadline', [today(), today()->addWeek()->endOfDay()])
+                                        ->groupByRaw('DATE(deadline)')
+                                        ->orderBy('deadline')
+                                        ->get()->toArray()
         ]);
     }
 }

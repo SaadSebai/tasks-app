@@ -4,7 +4,7 @@ import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, Li
 import { ref, computed } from 'vue';
 import collect from 'collect.js';
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 let props = defineProps(['tasks_priorities']);
 
@@ -35,8 +35,10 @@ let options = ref({
 </script>
 
 <template>
-    <Bar
-        :options="options"
-        :data="data"
-    />
+    <div class="h-80">
+        <Bar
+            :options="options"
+            :data="data"
+        />
+    </div>
 </template>

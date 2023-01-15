@@ -4,7 +4,7 @@ import { Doughnut } from 'vue-chartjs';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import collect from 'collect.js';
 
-ChartJS.register(ArcElement, Tooltip, Legend)
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 let props = defineProps(['tasks_statuses']);
 
@@ -42,8 +42,10 @@ let options = ref({
 </script>
 
 <template>
-    <Doughnut
-        :data="data"
-        :options="options"
-    />
+    <div class="h-80">
+        <Doughnut
+            :data="data"
+            :options="options"
+        />
+    </div>
 </template>
