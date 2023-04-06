@@ -36,8 +36,8 @@ class StoreTaskRequest extends FormRequest
             'estimated_duration'    => ['nullable', 'required_with:estimation_type', 'integer', 'min:0', 'max:1000'],
             'estimation_type'       => ['nullable', 'required_with:estimated_duration', 'string', new Enum(EstimationType::class)],
             'deadline'              => ['nullable', 'date'],
-            'started_at'            => ['nullable', 'date', 'after_or_equal:finished_at'],
-            'finished_at'           => ['nullable', 'date'],
+            'started_at'            => ['nullable', 'date'],
+            'finished_at'           => ['nullable', 'date', 'after_or_equal:finished_at'],
         ];
     }
 }
