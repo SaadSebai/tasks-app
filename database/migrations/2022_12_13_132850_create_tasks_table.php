@@ -24,7 +24,7 @@ return new class extends Migration
             $table->unsignedSmallInteger('progression')->comment('In %')->default(0);
             $table->string('priority')->comment('Low, medium, high')->default(Priorities::MEDIUM->value);
             $table->unsignedInteger('estimated_duration')->nullable();
-            $table->unsignedInteger('estimation_type')->comment('Minuts, hours, days...')->nullable();
+            $table->string('estimation_type')->comment('Minuts, hours, days...')->nullable();
             $table->timestamp('deadline')->nullable();
             $table->timestamp('started_at')->nullable();
             $table->timestamp('finished_at')->nullable();
