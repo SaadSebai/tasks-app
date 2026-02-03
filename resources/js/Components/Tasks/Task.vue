@@ -1,12 +1,12 @@
 <script setup>
 import { ref, computed, inject } from 'vue';
-import { useForm, usePage } from '@inertiajs/inertia-vue3';
+import { useForm, usePage } from '@inertiajs/vue3';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import ShowModal from '@/Shared/ShowModal.vue';
 import InputError from '@/Shared/InputError.vue';
 import ConfirmationModal from '@/Shared/ConfirmationModal.vue';
-import { Inertia } from '@inertiajs/inertia';
+import { router } from '@inertiajs/vue3';
 
 dayjs.extend(relativeTime);
 
@@ -18,7 +18,9 @@ let show = ref(false);
 
 let showDelete = ref(false);
 
-let url = ref(usePage().url.value)
+const page = usePage();
+
+let url = ref(page.url)
 
 let project = inject('project');
 
@@ -28,7 +30,7 @@ let project = inject('project');
 const priorityColor = computed(() => {
     let color = 0;
 
-    usePage().props.value.tasks_enums.priorities.forEach((element, index) => {
+    page.props.tasks_enums.priorities.forEach((element, index) => {
         if(props.task.priority === element) color = index;
     });
 
@@ -79,8 +81,8 @@ function submit() {
 /**
  * Delete task
  */
-function destory() {
-    Inertia.delete(
+function destroy() {
+    router.delete(
         route('projects.tasks.destroy', {'project': project.id, 'task': props.task.id}),
         {
             onSuccess: () => {
@@ -214,7 +216,7 @@ function destory() {
                 </button>
             </div>
         </form>
-        <ConfirmationModal v-if="showDelete" @hide="showDelete = false" @confirm="destory" preserve-scroll>
+        <ConfirmationModal v-if="showDelete" @hide="showDelete = false" @confirm="destroy" preserve-scroll>
             <template #title>
                 Deleting Task
             </template>

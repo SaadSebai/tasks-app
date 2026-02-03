@@ -3,14 +3,14 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import EditProject from '@/Components/Projects/EditProject.vue';
 import DeleteProject from '@/Components/Projects/DeleteProject.vue';
-import { Inertia } from '@inertiajs/inertia';
+import { router } from '@inertiajs/vue3';
 
 dayjs.extend(relativeTime);
 
 defineProps(['projects']);
 
 function toTasks (projectId) {
-    Inertia.get(route('projects.tasks.index', projectId));
+    router.get(route('projects.tasks.index', projectId));
 }
 </script>
 

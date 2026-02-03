@@ -2,7 +2,7 @@
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { ref } from 'vue';
-import { useForm } from '@inertiajs/inertia-vue3';
+import { useForm } from '@inertiajs/vue3';
 import FormModal from '@/Shared/FormModal.vue';
 import InputError from '@/Shared/InputError.vue';
 

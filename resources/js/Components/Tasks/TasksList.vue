@@ -1,5 +1,5 @@
 <script setup>
-import { Link } from '@inertiajs/inertia-vue3';
+import { Link } from '@inertiajs/vue3';
 import Task from '@/Components/Tasks/Task.vue';
 
 let props = defineProps(['tasks', 'showLoad']);

@@ -1,6 +1,6 @@
 <script setup>
 import { ref, inject } from 'vue';
-import { useForm, usePage } from '@inertiajs/inertia-vue3';
+import { useForm, usePage } from '@inertiajs/vue3';
 import FormModal from '@/Shared/FormModal.vue';
 import InputError from '@/Shared/InputError.vue';
 
@@ -8,17 +8,19 @@ let emit = defineEmits(['task-created']);
 
 let show = ref(false)
 
-let url = ref(usePage().url.value)
+const page = usePage();
+
+let url = ref(page.url.value)
 
 let project = inject('project');
 
 const form = useForm({
     title: '',
     description: '',
-    status: usePage().props.value.tasks_enums.statuses[0],
-    priority: usePage().props.value.tasks_enums.priorities[0],
+    status: page.props.tasks_enums.statuses[0],
+    priority: page.props.tasks_enums.priorities[0],
     estimated_duration: 0,
-    estimation_type: usePage().props.value.tasks_enums.estimation_type[0],
+    estimation_type: page.props.tasks_enums.estimation_type[0],
     deadline: '',
     started_at: '',
     finished_at: '',
@@ -42,7 +44,7 @@ function submit() {
 
 <template>
     <button
-        class="px-3 py-2 text-gray-100 bg-green-600 rounded-lg hover:bg-green-800"
+        class="px-3 py-2 text-gray-100 bg-blue-500 rounded-lg hover:bg-blue-600"
         @click="show = !show"
     >
         Create Task

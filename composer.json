@@ -1,67 +1,29 @@
 {
-    "name": "laravel/laravel",
-    "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
-    "license": "MIT",
-    "require": {
-        "php": "^8.0.2",
-        "guzzlehttp/guzzle": "^7.2",
-        "inertiajs/inertia-laravel": "^0.6.4",
-        "laravel/framework": "^9.19",
-        "laravel/sanctum": "^3.0",
-        "laravel/tinker": "^2.7",
-        "tightenco/ziggy": "^1.5"
-    },
-    "require-dev": {
-        "fakerphp/faker": "^1.9.1",
-        "laravel/pint": "^1.0",
-        "laravel/sail": "^1.0.1",
-        "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^6.1",
-        "phpunit/phpunit": "^9.5.10",
-        "spatie/laravel-ignition": "^1.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "App\\": "app/",
-            "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\": "tests/"
-        }
-    },
+    "private": true,
+    "type": "module",
     "scripts": {
-        "post-autoload-dump": [
-            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
-        ],
-        "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
-        ],
-        "post-root-package-install": [
-            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
-        ],
-        "post-create-project-cmd": [
-            "@php artisan key:generate --ansi"
-        ]
+        "dev": "vite",
+        "build": "vite build"
     },
-    "extra": {
-        "laravel": {
-            "dont-discover": []
-        }
+    "dependencies": {
+        "@inertiajs/inertia": "^0.11.0",
+        "@inertiajs/progress": "^0.2.7",
+        "@inertiajs/vue3": "^2.0.0",
+        "axios": "^1.6.0",
+        "chart.js": "^4.4.0",
+        "collect.js": "^4.36.0",
+        "dayjs": "^1.11.10",
+        "vue": "^3.4.0",
+        "vue-chartjs": "^5.3.0",
+        "ziggy-js": "^2.0.0"
     },
-    "config": {
-        "optimize-autoloader": true,
-        "preferred-install": "dist",
-        "sort-packages": true,
-        "allow-plugins": {
-            "pestphp/pest-plugin": true
-        }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+    "devDependencies": {
+        "@vitejs/plugin-vue": "^5.0.0",
+        "autoprefixer": "^10.4.16",
+        "laravel-vite-plugin": "^1.0.0",
+        "lodash": "^4.17.21",
+        "postcss": "^8.4.31",
+        "tailwindcss": "^3.4.1",
+        "vite": "^5.4.0"
+    }
 }

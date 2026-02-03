@@ -3,7 +3,7 @@ import { ref, watch } from 'vue';
 import ProjectsList from '@/Components/Projects/ProjectsList.vue';
 import CreateProject from '@/Components/Projects/CreateProject.vue';
 import Pagination from '@/Shared/Pagination.vue';
-import { Inertia } from '@inertiajs/inertia';
+import { router } from '@inertiajs/vue3';
 import debounce from 'lodash/debounce';
 
 let props = defineProps(['projects', 'filters']);
@@ -11,7 +11,7 @@ let props = defineProps(['projects', 'filters']);
 let search = ref(props.filters['search'] ?? '');
 
 watch(search, debounce(function(value) {
-    Inertia.get(
+    router.get(
         route('projects.index'),
         {
             filters: {

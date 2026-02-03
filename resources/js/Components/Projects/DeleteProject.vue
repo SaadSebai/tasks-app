@@ -1,13 +1,13 @@
 <script setup>
 import { ref } from 'vue';
 import ConfirmationModal from '@/Shared/ConfirmationModal.vue';
-import { Inertia } from '@inertiajs/inertia';
+import { router } from '@inertiajs/vue3';
 
 let props = defineProps(['project'])
 let show = ref(false)
 
 function destory() {
-    Inertia.delete(route('projects.destroy', props.project.id));
+    router.delete(route('projects.destroy', props.project.id));
     show.value = false;
 }
 

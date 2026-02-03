@@ -1,33 +1,36 @@
-import './bootstrap';
-import { createApp, h } from 'vue';
-import { createInertiaApp } from '@inertiajs/inertia-vue3';
-import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
-import Layout from './Shared/Layout.vue';
-import { InertiaProgress } from '@inertiajs/progress';
-import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
+import './bootstrap'
+import { createApp, h } from 'vue'
+import { createInertiaApp } from '@inertiajs/vue3'
+import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers'
+import Layout from './Shared/Layout.vue'
+import { InertiaProgress } from '@inertiajs/progress'
+import { ZiggyVue } from 'ziggy-js'
 
-const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
+const appName =
+    window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel'
 
 createInertiaApp({
-    title: (title) => `${title} - ${appName}`,
-    resolve: (name) => {
-        let page = resolvePageComponent(
-			`./Pages/${name}.vue`,
-			import.meta.glob('./Pages/**/*.vue')
-        );
+    title: title => `${title} - ${appName}`,
 
-        page.then((module) => {
-                module.default.layout ??= Layout;
-        });
+    resolve: name => {
+        const page = resolvePageComponent(
+            `./Pages/${name}.vue`,
+            import.meta.glob('./Pages/**/*.vue')
+        )
 
-        return page;
+        page.then(module => {
+            module.default.layout ??= Layout
+        })
+
+        return page
     },
-    setup({ el, app, props, plugin }) {
-        return createApp({ render: () => h(app, props) })
+
+    setup({ el, App, props, plugin }) {
+        return createApp({ render: () => h(App, props) })
             .use(plugin)
-            .use(ZiggyVue, Ziggy)
-            .mount(el);
+            .use(ZiggyVue, window.Ziggy)
+            .mount(el)
     },
-});
+})
 
-InertiaProgress.init();
+InertiaProgress.init()

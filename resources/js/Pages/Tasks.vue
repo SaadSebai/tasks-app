@@ -1,16 +1,17 @@
 <script setup>
 import TasksList from '@/Components/Tasks/TasksList.vue';
-import { Inertia } from '@inertiajs/inertia';
+import { router } from '@inertiajs/vue3';
 import { ref, watch, provide } from 'vue';
 import debounce from 'lodash/debounce';
 import CreateTask from '@/Components/Tasks/CreateTask.vue';
 import ProjectDetails from '@/Components/Projects/ProjectDetails.vue';
-import { usePage } from '@inertiajs/inertia-vue3';
+import { usePage } from '@inertiajs/vue3';
 
 let props = defineProps(['tasks', 'project', 'filters']);
 
 let allTasks = ref(props.tasks.data);
-let initialUrl = ref(usePage().url.value);
+const page = usePage()
+let initialUrl = ref(page.url);
 let showLoad = ref(props.tasks.next_page_url);
 
 let search = ref(props?.filters['search'] ?? '');
@@ -27,7 +28,7 @@ watch(search, debounce(function(value) {
  * @param {String} value
  */
 function filterByStatus(value) {
-    selected_status.value != value
+    selected_status.value !== value
         ? selected_status.value = value
         : selected_status.value = value = null;
     filter(search.value, value);
@@ -39,7 +40,7 @@ function filterByStatus(value) {
  * @param {String} status
  */
 function filter(search, status) {
-    Inertia.get(
+    router.get(
         route('projects.tasks.index', props.project.id),
         {
             filters: {
@@ -67,7 +68,7 @@ function load(title) {
         return
     }
 
-    Inertia.get(props.tasks.next_page_url, {}, {
+    router.get(props.tasks.next_page_url, {}, {
     preserveState: true,
     preserveScroll: true,
     replace: true,
@@ -82,7 +83,7 @@ function load(title) {
 }
 
 function addNewTask() {
-    allTasks.value.unshift(usePage().props.value.returned_data.task)
+    allTasks.value.unshift(page.props.returned_data.task)
 }
 
 /**

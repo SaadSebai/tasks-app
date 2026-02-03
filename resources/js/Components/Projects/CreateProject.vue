@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import { useForm } from '@inertiajs/inertia-vue3';
+import { useForm } from '@inertiajs/vue3';
 import FormModal from '@/Shared/FormModal.vue';
 import InputError from '@/Shared/InputError.vue';
 
@@ -28,7 +28,7 @@ function submit() {
 
 <template>
     <button
-        class="px-3 py-2 text-gray-100 bg-green-600 rounded-lg hover:bg-green-800"
+        class="px-3 py-2 text-gray-100 bg-blue-500 rounded-lg hover:bg-blue-600"
         @click="show = !show"
     >
         Create Project
